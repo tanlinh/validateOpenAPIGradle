@@ -1,0 +1,38 @@
+openapi: 3.0.1
+info:
+  title: Hello World
+  description: My API
+  contact:
+    name: Fred
+    url: https://gigantic-server.com
+    email: Fred@gigagantic-server.com
+  license:
+    name: Apache 2.0
+    url: https://foo.bar
+  version: "0.0"
+paths:
+  /greetings/{name}:
+    get:
+      tags:
+        - greeting
+      summary: Greets a person
+      description: A friendly greeting is returned
+      operationId: greetings
+      parameters:
+        - name: name
+          in: path
+          description: The name of the person
+          required: true
+          schema:
+            minLength: 1
+            type: string
+      responses:
+        200:
+          content:
+            text/plain:
+              schema:
+                type: string
+        400:
+          description: Invalid Name Supplied
+        404:
+          description: Person not found

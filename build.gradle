@@ -1,0 +1,27 @@
+plugins {
+    id 'java'
+    id 'org.openapi.generator' version '5.3.1'
+    id 'org.openapitools.openapistylevalidator' version '1.9'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springdoc:springdoc-openapi-ui:1.2.33'
+}
+
+openAPIStyleValidator {
+    inputFile = "$projectDir/src/main/resources/swagger.yaml"
+}
+
+compileJava.dependsOn(openAPIStyleValidator)
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
